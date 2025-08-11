@@ -259,5 +259,48 @@
         </div>
       </div>
     </div>
+    
+<script>
+  function updatePortfolio() {
+    document.querySelectorAll('#portfolio-tbody tr').forEach(row => {
+      const priceCell = row.querySelector('[data-price]');
+      const initialPrice = parseFloat(priceCell.getAttribute('data-price'));
+      const quantity = parseFloat(row.children[3].textContent);
+      const initialCost = parseFloat(row.children[4].textContent.replace('$', ''));
+
+      // Simulate random price change (±15%)
+      const newPrice = (initialPrice * (0.85 + Math.random() * 0.3)).toFixed(2);
+
+      // Update current price
+      priceCell.textContent = newPrice;
+
+      // Calculate profit
+      const profit = (newPrice - initialCost) * quantity;
+      const percentage = ((newPrice - initialCost) / initialCost) * 100;
+
+      // Update Gain/Loss ($)
+      const profitCell = row.children[7];
+      profitCell.textContent = profit >= 0 ? `+$${profit.toFixed(2)}` : `-$${Math.abs(profit).toFixed(2)}`;
+      profitCell.className = profit >= 0 
+        ? 'text-green-500 text-sm font-normal leading-normal' 
+        : 'text-red-500 text-sm font-normal leading-normal';
+
+      // Update Gain/Loss (%)
+      const pctCell = row.children[6];
+      pctCell.textContent = percentage >= 0 ? `+${percentage.toFixed(1)}%` : `${percentage.toFixed(1)}%`;
+      pctCell.className = percentage >= 0 
+        ? 'text-green-500 text-sm font-normal leading-normal' 
+        : 'text-red-500 text-sm font-normal leading-normal';
+    });
+  }
+
+  // Update every 3 seconds
+  setInterval(updatePortfolio, 3000);
+
+  // Run once on load
+  updatePortfolio();
+</script>
+
+    
   </body>
 </html>
