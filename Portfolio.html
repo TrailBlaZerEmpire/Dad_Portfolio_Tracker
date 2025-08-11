@@ -227,36 +227,67 @@
         </div>
       </div>
     </div>
-
-    <script>
-async function fetchStockPrice(symbol, elementId) {
-  const API_KEY = 'YOUR_API_KEY'; // Replace with your Alpha Vantage API key
+    
+<script>
+async function fetchStockPrice(symbol, rowId) {
+  const API_KEY = 'YOUR_API_KEY'; // ← Replace with your key
   const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${PE8JCWW2R82UCR3E}`;
 
   try {
     const response = await fetch(url);
     const data = await response.json();
-    const price = data?.['Global Quote']?.['05. price'];
-    if (price) {
-      const priceCell = document.querySelector(`#${elementId} [data-price]`);
-      const oldPrice = parseFloat(priceCell.getAttribute('data-price'));
-      priceCell.textContent = parseFloat(price).toFixed(3);
+    const quote = data['Global Quote'];
 
-      // Update gain/loss logic here...
+    if (!quote) {
+      console.warn(`No data for ${symbol}`);
+      return;
     }
+
+    const price = parseFloat(quote['05. price']);
+    const row = document.getElementById(rowId);
+    const initialCost = parseFloat(row.querySelector('[data-price]').getAttribute('data-price'));
+    const quantity = parseFloat(row.cells[3].textContent);
+
+    // Update current price
+    row.querySelector('[data-price]').textContent = price.toFixed(3);
+
+    // Calculate gain/loss
+    const profit = (price - initialCost) * quantity;
+    const percentage = ((price - initialCost) / initialCost) * 100;
+
+    // Update Gain/Loss ($)
+    const profitCell = row.cells[7];
+    profitCell.textContent = profit >= 0 ? `+$${profit.toFixed(2)}` : `-$${Math.abs(profit).toFixed(2)}`;
+    profitCell.className = profit >= 0 
+      ? 'text-green-500 text-sm font-normal leading-normal' 
+      : 'text-red-500 text-sm font-normal leading-normal';
+
+    // Update Gain/Loss (%)
+    const pctCell = row.cells[6];
+    pctCell.textContent = percentage >= 0 ? `+${percentage.toFixed(2)}%` : `${percentage.toFixed(2)}%`;
+    pctCell.className = percentage >= 0 
+      ? 'text-green-500 text-sm font-normal leading-normal' 
+      : 'text-red-500 text-sm font-normal leading-normal';
+
+    // Optional: Update Remarks
+    const remarksCell = row.cells[8];
+    remarksCell.textContent = percentage >= 0 ? "Strong" : "Hold";
+
   } catch (err) {
-    console.warn(`Failed to fetch ${symbol}`, err);
+    console.error(`Error fetching ${symbol}:`, err);
   }
 }
 
-// Call it for each stock
-setInterval(() => {
-  fetchStockPrice('MZH', 'nanofilm-row');
-  fetchStockPrice('N2IU', 'panasia-row');
-  fetchStockPrice('ME8U', 'industrialtrust-row');
-  fetchStockPrice('G13', 'genting-row');
-  fetchStockPrice('BVA', 'topglove-row');
-}, 60000); // Update every 60 seconds (free API limit)
+// Update all 3 stocks
+function updatePortfolio() {
+  fetchStockPrice('NANO.SI', 'nano-row');
+  fetchStockPrice('GAM7.SI', 'genting-row');
+  fetchStockPrice('TOPG.SI', 'topglove-row');
+}
+
+// Update every 5 minutes (300,000 ms)
+setInterval(updatePortfolio, 300000);
+updatePortfolio(); // Run on load
 </script>
 
     
