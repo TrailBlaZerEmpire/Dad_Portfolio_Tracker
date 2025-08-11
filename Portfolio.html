@@ -98,24 +98,14 @@
                 <table class="flex-1">
                   <thead>
                     <tr class="bg-[#1f251d]">
-                      <th class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-120 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">Asset</th>
+                      <th class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-360 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">Acquisition Date</th>
+                      <th class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-120 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">Stock</th>
                       <th class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-240 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">Symbol</th>
-                      <th class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-360 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">
-                        Acquisition Date
-                      </th>
                       <th class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-480 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">Quantity</th>
-                      <th class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-600 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">
-                        Initial Cost
-                      </th>
-                      <th class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-720 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">
-                        Current Price
-                      </th>
-                      <th class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-840 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">
-                        Gain/Loss (%)
-                      </th>
-                      <th class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-960 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">
-                        Gain/Loss ($)
-                      </th>
+                      <th class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-600 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">Initial Cost</th>
+                      <th class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-720 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">Current Price</th>
+                      <th class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-840 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">Gain/Loss (%)</th>
+                      <th class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-960 px-4 py-3 text-left text-white w-[400px] text-sm font-medium leading-normal">Gain/Loss ($)</th>
                     </tr>
                   </thead>
                   <!-- 
@@ -184,17 +174,6 @@
                    --> 
 
                   <tbody id="portfolio-tbody">
-  <!-- Existing Stocks -->
-  <tr class="border-t border-t-[#42513e]">
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-120 h-[72px] px-4 py-2 w-[400px] text-white text-sm font-normal leading-normal">TechCorp</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-240 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">TCC</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-360 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">2023-01-15</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-480 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">10</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-600 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">$100.00</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-720 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal" data-price="100.00">100.00</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-840 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">0%</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-960 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">$0.00</td>
-  </tr>
 
   <!-- New Stocks -->
   <tr class="border-t border-t-[#42513e]">
@@ -204,28 +183,6 @@
     <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-480 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">50</td>
     <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-600 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">$8.50</td>
     <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-720 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal" data-price="8.50">8.50</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-840 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">0%</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-960 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">$0.00</td>
-  </tr>
-
-  <tr class="border-t border-t-[#42513e]">
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-120 h-[72px] px-4 py-2 w-[400px] text-white text-sm font-normal leading-normal">Pan Asia</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-240 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">N2IU</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-360 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">2023-08-12</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-480 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">100</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-600 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">$5.20</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-720 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal" data-price="5.20">5.20</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-840 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">0%</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-960 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">$0.00</td>
-  </tr>
-
-  <tr class="border-t border-t-[#42513e]">
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-120 h-[72px] px-4 py-2 w-[400px] text-white text-sm font-normal leading-normal">Industrial Trust</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-240 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">ME8U</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-360 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">2023-06-15</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-480 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">200</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-600 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">$3.00</td>
-    <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-720 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal" data-price="3.00">3.00</td>
     <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-840 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">0%</td>
     <td class="table-2501cda2-f8c0-44d7-93bd-e30b725b4af8-column-960 h-[72px] px-4 py-2 w-[400px] text-[#a5b6a0] text-sm font-normal leading-normal">$0.00</td>
   </tr>
