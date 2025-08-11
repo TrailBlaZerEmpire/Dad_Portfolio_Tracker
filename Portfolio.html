@@ -257,8 +257,18 @@
     </div>
 
     <!-- Auto-Calculate Gain/Loss -->
-    <script>
-  // Wait for the page to fully load before running
+    
+<script>
+  // Helper: Format number with commas and 2 decimal places
+  function formatCurrency(value) {
+    return new Intl.NumberFormat('en-MY', {
+      style: 'decimal',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    }).format(value);
+  }
+
+  // Wait for the page to fully load
   window.addEventListener('DOMContentLoaded', function () {
     function updatePortfolio() {
       let totalValue = 0;
@@ -285,8 +295,8 @@
 
         // Format output
         const formattedAmount = profit >= 0 
-          ? `+RM ${profit.toFixed(2)}` 
-          : `-RM ${Math.abs(profit).toFixed(2)}`;
+          ? `+RM ${formatCurrency(Math.abs(profit))}` 
+          : `-RM ${formatCurrency(Math.abs(profit))}`;
         
         const formattedPct = percentage >= 0 
           ? `+${percentage.toFixed(2)}%` 
@@ -309,7 +319,7 @@
       // Update total portfolio value
       const totalValueEl = document.getElementById('total-value');
       if (totalValueEl) {
-        totalValueEl.textContent = `RM ${totalValue.toFixed(2)}`;
+        totalValueEl.textContent = `RM ${formatCurrency(totalValue)}`;
       }
 
       // Update total gain/loss display
@@ -318,19 +328,21 @@
       const totalGainPct = totalInvested !== 0 ? (totalGain / totalInvested) * 100 : 0;
 
       if (totalGainEl) {
-        totalGainEl.textContent = `Total P&L: RM ${totalGain.toFixed(2)} (${totalGainPct >= 0 ? '+' : ''}${totalGainPct.toFixed(2)}%)`;
+        totalGainEl.textContent = `Total P&L: RM ${formatCurrency(totalGain)} (${totalGainPct >= 0 ? '+' : ''}${totalGainPct.toFixed(2)}%)`;
         totalGainEl.style.color = totalGain >= 0 ? '#4ade80' : '#f87171';
       }
 
       console.log(`📊 Portfolio Updated:
-      Total Invested: RM ${totalInvested.toFixed(2)}
-      Current Value: RM ${totalValue.toFixed(2)}
-      Total P&L: RM ${totalGain.toFixed(2)} (${totalGainPct.toFixed(2)}%)`);
+      Total Invested: RM ${formatCurrency(totalInvested)}
+      Current Value: RM ${formatCurrency(totalValue)}
+      Total P&L: RM ${formatCurrency(totalGain)} (${totalGainPct.toFixed(2)}%)`);
     }
 
-    // ✅ Run the function when page loads
+    // Run the function when page loads
     updatePortfolio();
   });
 </script>
+
+    
   </body>
 </html>
