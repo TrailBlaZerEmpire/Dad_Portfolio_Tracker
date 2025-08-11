@@ -200,6 +200,8 @@
               </table>
             </div>
 
+              <p id="total-gain" style="text-align: right; font-size: 0.9em; margin: 0 20px; color: #b8e4a5;"> Calculating... </p>
+            
             <!-- Last Updated -->
             <p style="
               text-align: right;
@@ -270,6 +272,14 @@ function updatePortfolio() {
   // Optional: Add total gain/loss summary somewhere (e.g., below)
   const totalGain = totalValue - totalInvested;
   const totalGainPct = totalInvested !== 0 ? (totalGain / totalInvested) * 100 : 0;
+
+  // Update total gain/loss display
+  const totalGainEl = document.getElementById('total-gain');
+  const totalGain = totalValue - totalInvested;
+  const totalGainPct = totalInvested !== 0 ? (totalGain / totalInvested) * 100 : 0;
+
+  totalGainEl.textContent = `Total P&L: RM ${totalGain.toFixed(2)} (${totalGainPct >= 0 ? '+' : ''}${totalGainPct.toFixed(2)}%)`;
+  totalGainEl.style.color = totalGain >= 0 ? '#4ade80' : '#f87171';
 
   console.log(`Total Invested: RM ${totalInvested.toFixed(2)}`);
   console.log(`Total Current Value: RM ${totalValue.toFixed(2)}`);
