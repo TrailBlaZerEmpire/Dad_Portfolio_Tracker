@@ -219,12 +219,14 @@
 
     <!-- Auto-Calculate Gain/Loss -->
     <script>
+  // Wait for the page to fully load before running
+  window.addEventListener('DOMContentLoaded', function () {
     function updatePortfolio() {
       let totalValue = 0;
       let totalInvested = 0;
 
-       // Update each stock
-       document.querySelectorAll('tr[id^="stock-"]').forEach(row => {
+      // Update each stock
+      document.querySelectorAll('tr[id^="stock-"]').forEach(row => {
         const quantity = parseFloat(row.querySelector('.quantity').textContent);
         const initialCost = parseFloat(row.querySelector('.initial-cost').textContent.replace('$', ''));
         const currentPrice = parseFloat(row.querySelector('.current-price').textContent);
@@ -244,12 +246,12 @@
 
         // Format output
         const formattedAmount = profit >= 0 
-        ? `+RM ${profit.toFixed(2)}` 
-        : `-RM ${Math.abs(profit).toFixed(2)}`;
-    
+          ? `+RM ${profit.toFixed(2)}` 
+          : `-RM ${Math.abs(profit).toFixed(2)}`;
+        
         const formattedPct = percentage >= 0 
-        ? `+${percentage.toFixed(2)}%` 
-        : `${percentage.toFixed(2)}%`;
+          ? `+${percentage.toFixed(2)}%` 
+          : `${percentage.toFixed(2)}%`;
 
         // Update cells
         gainAmountCell.textContent = formattedAmount;
@@ -257,34 +259,39 @@
 
         // Color
         gainAmountCell.className = profit >= 0 
-        ? 'text-green-500 text-sm font-normal leading-normal' 
-        : 'text-red-500 text-sm font-normal leading-normal';
-      
+          ? 'text-green-500 text-sm font-normal leading-normal' 
+          : 'text-red-500 text-sm font-normal leading-normal';
+          
         gainPctCell.className = percentage >= 0 
-        ? 'text-green-500 text-sm font-normal leading-normal' 
-        : 'text-red-500 text-sm font-normal leading-normal';
-        });
+          ? 'text-green-500 text-sm font-normal leading-normal' 
+          : 'text-red-500 text-sm font-normal leading-normal';
+      });
 
-        // Update total portfolio value
-        const totalValueEl = document.getElementById('total-value');
+      // Update total portfolio value
+      const totalValueEl = document.getElementById('total-value');
+      if (totalValueEl) {
         totalValueEl.textContent = `RM ${totalValue.toFixed(2)}`;
+      }
 
-        // Optional: Add total gain/loss summary somewhere (e.g., below)
-        const totalGain = totalValue - totalInvested;
-        const totalGainPct = totalInvested !== 0 ? (totalGain / totalInvested) * 100 : 0;
+      // Update total gain/loss display
+      const totalGainEl = document.getElementById('total-gain');
+      const totalGain = totalValue - totalInvested;
+      const totalGainPct = totalInvested !== 0 ? (totalGain / totalInvested) * 100 : 0;
 
-        // Update total gain/loss display
-        const totalGainEl = document.getElementById('total-gain');
-        const totalGain = totalValue - totalInvested;
-        const totalGainPct = totalInvested !== 0 ? (totalGain / totalInvested) * 100 : 0;
-
+      if (totalGainEl) {
         totalGainEl.textContent = `Total P&L: RM ${totalGain.toFixed(2)} (${totalGainPct >= 0 ? '+' : ''}${totalGainPct.toFixed(2)}%)`;
         totalGainEl.style.color = totalGain >= 0 ? '#4ade80' : '#f87171';
-
-        console.log(`Total Invested: RM ${totalInvested.toFixed(2)}`);
-        console.log(`Total Current Value: RM ${totalValue.toFixed(2)}`);
-        console.log(`Total Profit/Loss: RM ${totalGain.toFixed(2)} (${totalGainPct.toFixed(2)}%)`);
       }
-      </script>
+
+      console.log(`📊 Portfolio Updated:
+      Total Invested: RM ${totalInvested.toFixed(2)}
+      Current Value: RM ${totalValue.toFixed(2)}
+      Total P&L: RM ${totalGain.toFixed(2)} (${totalGainPct.toFixed(2)}%)`);
+    }
+
+    // ✅ Run the function when page loads
+    updatePortfolio();
+  });
+</script>
   </body>
 </html>
