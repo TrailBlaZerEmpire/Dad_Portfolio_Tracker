@@ -26,8 +26,18 @@
   </style>
 </head>
 
-<body class="relative flex size-full min-h-screen flex-col bg-[#131712] dark group/design-root overflow-x-hidden" style="font-family: Manrope, 'Noto Sans', sans-serif;">
+<body 
+  class="relative flex size-full min-h-screen flex-col dark group/design-root overflow-x-hidden"
+  style="
+    font-family: Manrope, 'Noto Sans', sans-serif;
+    background: linear-gradient(135deg, #0f1b07, #1a2e10) fixed;
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0);
+    background-size: 50px 50px;
+    min-height: 100vh;
+  "
+>
   <div class="layout-container flex h-full grow flex-col">
+    <!-- Your entire content stays exactly the same -->    
 
     <!-- Header -->
     <header class="flex items-center justify-between border-b border-solid border-b-[#2d372a] px-10 py-3">
