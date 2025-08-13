@@ -13,10 +13,10 @@
     href="https://fonts.googleapis.com/css2?display=swap&family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900"
   />
 
-  <!-- Tailwind CSS - NO EXTRA SPACES -->
+  <!-- Tailwind CSS (NO EXTRA SPACES) -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-  <!-- Remix Icons -->
+  <!-- Remix Icons (for sun/moon icons) -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
   <!-- Favicon -->
@@ -24,29 +24,32 @@
 
   <!-- Custom Styles -->
   <style>
+    /* Background: matches index.html exactly */
+    body {
+      background: linear-gradient(135deg, #0f1b07, #1a2e10);
+      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0);
+      background-size: 50px 50px;
+      background-attachment: fixed;
+      min-height: 100vh;
+      margin: 0;
+      font-family: Manrope, 'Noto Sans', sans-serif;
+    }
+
+    /* Text colors for gain/loss */
     .text-green-500 { color: #4ade80; }
     .text-red-500 { color: #f87171; }
     .text-yellow-300 { color: #fde047; }
-    td { transition: color 0.3s ease; }
 
-    /* Force background even if Tailwind fails */
-    body {
-      background: linear-gradient(135deg, #0f1b07, #1a2e10) fixed;
-      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0);
-      background-size: 50px 50px;
-      min-height: 100vh;
-      margin: 0;
-    }
+    /* Smooth color transitions */
+    td { transition: color 0.3s ease; }
   </style>
 </head>
 
-<body class="relative flex size-full min-h-screen flex-col dark group/design-root overflow-x-hidden" style="font-family: Manrope, 'Noto Sans', sans-serif;">
-  
-  <!-- Layout Container -->
+<body class="relative flex size-full min-h-screen flex-col dark group/design-root overflow-x-hidden">
   <div class="layout-container flex h-full grow flex-col">
 
     <!-- Header -->
-    <header class="flex items-center justify-between border-b border-solid border-b-[#2d372a] px-10 py-3">
+    <header class="flex items-center justify-between border-b border-solid border-b-[#2d372a] px-10 py-3 bg-[#131712]">
       <div class="flex items-center gap-8">
         <div class="flex items-center gap-4 text-white">
           <div class="size-4">
@@ -117,7 +120,7 @@
           </div>
         </div>
 
-        <!-- Daily Checklist -->
+        <!-- Daily Update Checklist -->
         <div style="max-width: 900px; margin: 20px auto 10px; padding: 15px; background: rgba(20, 40, 15, 0.5); border-radius: 12px; font-size: 0.95em; color: #b8e4a5; box-shadow: 0 2px 8px rgba(0,0,0,0.2); text-align: center;">
           <strong>✅ Daily Update Checklist:</strong>
           <ol style="margin: 10px 0 0 20px; text-align: left;">
@@ -128,12 +131,10 @@
           </ol>
         </div>
 
-        <div class="w-10 h-10 bg-red-500"></div>
-
         <!-- Portfolio Table -->
         <div style="max-width: 900px; margin: 0 auto;">
           <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mt-5 mb-3">Your Holdings</h2>
-          <div class="flex overflow-hidden rounded-xl border border-[#42513e]">
+          <div class="flex overflow-hidden rounded-xl border border-[#42513e] bg-[#131712]">
             <table class="flex-1">
               <thead>
                 <tr class="bg-[#1f251d]">
