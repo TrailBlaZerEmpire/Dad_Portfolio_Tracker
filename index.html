@@ -290,6 +290,27 @@
         </div>
       </div>
     </div>
+
+
+    <!-- Theme Toggle Button (Add this in header or footer) -->
+<div class="fixed bottom-6 right-6 z-50">
+  <button 
+    onclick="toggleTheme()" 
+    class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300"
+    title="Toggle Dark/Light Mode">
+    <i id="theme-toggle-icon" class="ri-moon-line text-lg"></i>
+  </button>
+</div>
+
+<!-- PDF Export Button -->
+<div class="flex justify-center mt-8">
+  <button 
+    onclick="exportToPDF()" 
+    class="px-6 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold rounded-lg hover:shadow-2xl transition-all duration-300 whitespace-nowrap">
+    📄 Export to PDF
+  </button>
+</div>
+    
   </footer>
 
   <!-- AUTO-CALCULATION SCRIPT -->
@@ -343,5 +364,99 @@
           : `-RM ${formatCurrency(Math.abs(totalGain))} (${totalGainPct.toFixed(2)}%)`;
     });
   </script>
+
+  <!-- Shared Script for Dark/Light Mode, PDF, Dividends -->
+<script>
+  // ================
+  // 1. DARK/LIGHT MODE TOGGLE
+  // ================
+  function initTheme() {
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = saved || (prefersDark ? 'dark' : 'light');
+    
+    document.documentElement.classList.add(theme);
+    updateThemeIcon(theme);
+  }
+
+  function toggleTheme() {
+    const current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    const newTheme = current === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.classList.remove(current);
+    document.documentElement.classList.add(newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+  }
+
+  function updateThemeIcon(theme) {
+    const icon = document.getElementById('theme-toggle-icon');
+    if (icon) {
+      icon.className = theme === 'dark' 
+        ? 'ri-sun-line text-yellow-300' 
+        : 'ri-moon-line text-gray-700';
+    }
+  }
+
+  // ================
+  // 2. DIVIDEND TRACKING (Auto-sum)
+  // ================
+  function updateDividendTotal() {
+    let total = 0;
+    document.querySelectorAll('.dividend-amount').forEach(cell => {
+      const value = parseFloat(cell.textContent.replace(/[^0-9.-]/g, ''));
+      if (!isNaN(value)) total += value;
+    });
+    const totalCell = document.getElementById('dividend-total');
+    if (totalCell) {
+      totalCell.textContent = `RM ${total.toFixed(2)}`;
+    }
+  }
+
+  // ================
+  // 3. PRINTABLE PDF EXPORT
+  // ================
+  function exportToPDF() {
+    const printContent = `
+      <html>
+      <head>
+        <title>Blessing in Disguise Portfolio</title>
+        <style>
+          body { font-family: Arial, sans-serif; padding: 20px; background: white; color: black; }
+          h1, h2 { color: #2d5218; }
+          table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+          th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+          th { background: #e0f2d8; }
+          .footer { margin-top: 40px; font-size: 0.9em; color: #555; }
+        </style>
+      </head>
+      <body>
+        <h1>Blessing in Disguise Portfolio</h1>
+        <p>Appa and Magane | Investment Journey | ${new Date().toLocaleDateString()}</p>
+        <div id="portfolio">${document.querySelector('#portfolio-tbody')?.outerHTML || ''}</div>
+        <div class="footer">
+          <p>Total Portfolio Value: <strong>${document.getElementById('total-value')?.textContent || 'RM 0.00'}</strong></p>
+          <p>Total P&L: <strong>${document.getElementById('total-gain')?.textContent || 'Calculating...'}</strong></p>
+          <p>Dividend Income: <strong>${document.getElementById('dividend-total')?.textContent || 'RM 0.00'}</strong></p>
+          <p>Generated from MahaVishnu Legacy. May Riddhi and Sidhi be with us.</p>
+        </div>
+      </body>
+      </html>
+    `;
+    
+    const printWin = window.open('', '', 'width=800,height=600');
+    printWin.document.open();
+    printWin.document.write(printContent);
+    printWin.document.close();
+    printWin.print();
+  }
+
+  // Run on load
+  document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
+    updateDividendTotal();
+  });
+</script>
+ 
 </body>
 </html>
