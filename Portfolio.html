@@ -251,11 +251,7 @@
       document.documentElement.classList.add(theme);
       updateThemeIcon(theme);
     }
-
-    function toggleTheme() {
-      const current = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-      const newTheme = current === 'light' ? 'dark' : 'light';
-      
+  
       document.documentElement.classList.remove(current);
       document.documentElement.classList.add(newTheme);
       localStorage.setItem('theme', newTheme);
@@ -386,7 +382,7 @@
     });
   </script>
 
-  <!-- Theme Toggle Button -->
+  <!-- Theme Toggle Button 
   <div class="fixed bottom-6 right-6 z-50">
     <button 
       onclick="toggleTheme()" 
@@ -395,6 +391,7 @@
       <i id="theme-toggle-icon" class="ri-moon-line text-gray-700"></i>
     </button>
   </div>
+  -->
 
   <!-- PDF Export Button -->
   <div class="flex justify-center mt-8">
