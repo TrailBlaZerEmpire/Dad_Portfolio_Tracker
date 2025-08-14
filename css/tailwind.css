@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary Colors - Deep Forest Foundation */
+  --color-primary: #0f1b07; /* custom deep forest */
+  --color-primary-50: #f6f8f5; /* lightest forest tint */
+  --color-primary-100: #e8ede5; /* very light forest */
+  --color-primary-200: #d1dccb; /* light forest */
+  --color-primary-300: #a8bfa0; /* medium-light forest */
+  --color-primary-400: #7a9c6f; /* medium forest */
+  --color-primary-500: #4f7544; /* medium-dark forest */
+  --color-primary-600: #3d5a34; /* dark forest */
+  --color-primary-700: #2f4428; /* darker forest */
+  --color-primary-800: #1f2e1a; /* very dark forest */
+  --color-primary-900: #0f1b07; /* deepest forest */
+
+  /* Secondary Colors - Growth Accent */
+  --color-secondary: #1a2e10; /* custom growth green */
+  --color-secondary-50: #f7f9f6; /* lightest growth tint */
+  --color-secondary-100: #eaf0e7; /* very light growth */
+  --color-secondary-200: #d5e2cf; /* light growth */
+  --color-secondary-300: #b3cca7; /* medium-light growth */
+  --color-secondary-400: #8bb075; /* medium growth */
+  --color-secondary-500: #659449; /* medium-dark growth */
+  --color-secondary-600: #4f7537; /* dark growth */
+  --color-secondary-700: #3e5a2b; /* darker growth */
+  --color-secondary-800: #2a3e1e; /* very dark growth */
+  --color-secondary-900: #1a2e10; /* deepest growth */
+
+  /* Accent Colors - Prosperity Gold */
+  --color-accent: #b8860b; /* custom prosperity gold */
+  --color-accent-50: #fefcf7; /* lightest gold tint */
+  --color-accent-100: #fdf6e8; /* very light gold */
+  --color-accent-200: #faecc5; /* light gold */
+  --color-accent-300: #f5da97; /* medium-light gold */
+  --color-accent-400: #efc259; /* medium gold */
+  --color-accent-500: #e6a82b; /* medium-dark gold */
+  --color-accent-600: #d49020; /* dark gold */
+  --color-accent-700: #b8860b; /* prosperity gold */
+  --color-accent-800: #9a6f0a; /* darker gold */
+  --color-accent-900: #7d5808; /* deepest gold */
+
+  /* Background Colors */
+  --color-background: #fafafa; /* clean canvas */
+  --color-surface: #f5f7f4; /* subtle warmth */
+
+  /* Text Colors */
+  --color-text-primary: #1a1a1a; /* clear hierarchy */
+  --color-text-secondary: #666666; /* supporting information */
+
+  /* Status Colors */
+  --color-success: #2d5016; /* positive gains */
+  --color-warning: #b8860b; /* attention needed */
+  --color-error: #8b2635; /* helpful concern */
+
+  /* Border Colors */
+  --color-border: #e5e7e4; /* minimal separation */
+  --color-border-light: #f0f2ef; /* subtle separation */
+
+  /* Shadow Colors */
+  --shadow-subtle: 0 2px 8px rgba(15, 27, 7, 0.1); /* gentle elevation */
+  --shadow-strong: 0 8px 24px rgba(15, 27, 7, 0.15); /* modal overlays */
+}
+
+@layer base {
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    color: var(--color-text-primary);
+    background-color: var(--color-background);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+
+  .font-accent {
+    font-family: 'Crimson Text', serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-lg font-inter font-semibold transition-all duration-300 ease-out hover:bg-primary-800 focus:ring-2 focus:ring-primary-300;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white px-6 py-3 rounded-lg font-inter font-semibold transition-all duration-300 ease-out hover:bg-secondary-800 focus:ring-2 focus:ring-secondary-300;
+  }
+
+  .btn-accent {
+    @apply bg-accent text-white px-6 py-3 rounded-lg font-inter font-semibold transition-all duration-300 ease-out hover:bg-accent-800 focus:ring-2 focus:ring-accent-300;
+  }
+
+  .card {
+    @apply bg-surface rounded-lg p-6 shadow-subtle transition-all duration-300 ease-out hover:shadow-strong;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 border border-border rounded-lg bg-white text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-primary-300 focus:border-primary-500 transition-all duration-300 ease-out;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 300ms ease-out;
+  }
+
+  .transition-reveal {
+    transition: all 400ms ease-out;
+  }
+
+  .shadow-gentle {
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-strong);
+  }
+}
