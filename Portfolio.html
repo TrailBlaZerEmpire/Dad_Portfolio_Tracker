@@ -9,19 +9,16 @@
   <link rel="stylesheet" as="style" onload="this.rel='stylesheet'" href="https://fonts.googleapis.com/css2?display=swap&family=Manrope:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900" />
 
   <!-- Tailwind CSS (CLEAN URL - no spaces) -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
 
   <!-- Custom Styles -->
   <style>
-    /* Permanent dark background to match index.html */
+    /* Force solid black background */
     body {
-      background: linear-gradient(135deg, #0f1b07, #1a2e10);
-      background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0);
-      background-size: 50px 50px;
-      background-attachment: fixed;
+      background-color: #000000;
       min-height: 100vh;
       margin: 0;
       font-family: Manrope, 'Noto Sans', sans-serif;
@@ -37,172 +34,156 @@
   </style>
 </head>
 
-<body class="relative flex size-full min-h-screen flex-col overflow-x-hidden">
-  <div class="layout-container flex h-full grow flex-col">
+<body class="text-white">
 
-    <!-- Header -->
-    <header class="flex items-center justify-between border-b border-solid border-b-[#2d372a] px-10 py-3 bg-[#131712]">
-      <div class="flex items-center gap-8">
-        <div class="flex items-center gap-4 text-white">
-          <div class="size-4">
-            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
-            </svg>
-          </div>
-          <h2 class="text-white text-lg font-bold leading-tight tracking-[-0.015em]">MahaVishnu Legacy</h2>
+  <!-- Header -->
+  <header class="flex items-center justify-between border-b border-solid border-b-gray-700 px-10 py-3 bg-black">
+    <div class="flex items-center gap-8">
+      <div class="flex items-center gap-4">
+        <div class="size-4">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"></path>
+          </svg>
         </div>
-
-        <!-- Navigation -->
-        <nav class="flex items-center gap-9">
-          <a class="text-white text-sm font-medium leading-normal" href="index.html">Home</a>
-          <a class="text-white text-sm font-medium leading-normal" href="Portfolio.html">Portfolio</a>
-          <a class="text-white text-sm font-medium leading-normal" href="Learn.html">Learn</a>
-        </nav>
+        <h2 class="text-white text-lg font-bold">MahaVishnu Legacy</h2>
       </div>
-    </header>
+      <nav class="flex items-center gap-9 text-sm">
+        <a class="text-white" href="index.html">Home</a>
+        <a class="text-white" href="Portfolio.html">Portfolio</a>
+        <a class="text-white" href="Learn.html">Learn</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Main Content -->
-    <div class="px-40 flex flex-1 justify-center py-5">
-      <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+  <!-- Main Content -->
+  <div class="px-40 py-5">
+    <div class="max-w-4xl mx-auto">
 
-        <!-- Page Title -->
-        <div class="flex flex-wrap justify-between gap-3 p-4">
-          <div class="flex min-w-72 flex-col gap-3">
-            <p class="text-white text-[32px] font-bold leading-tight">Portfolio</p>
-            <p class="text-[#a5b6a0] text-sm font-normal leading-normal">View your investments and track performance.</p>
-          </div>
+      <!-- Title -->
+      <div class="p-4">
+        <h1 class="text-3xl font-bold text-white">Portfolio</h1>
+        <p class="text-gray-400">View your investments and track performance.</p>
+      </div>
+
+      <!-- Totals -->
+      <div class="flex flex-wrap gap-4 p-4">
+        <div class="flex-1 p-6 bg-gray-900 rounded-xl">
+          <p class="text-white">Total Portfolio Value</p>
+          <p id="total-value" class="text-2xl font-bold text-white">RM 0.00</p>
         </div>
-
-        <!-- Total Portfolio Value & Dividend -->
-        <div class="flex flex-wrap gap-4 p-4">
-          <div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-[#2d372a]">
-            <p class="text-white text-base font-medium leading-normal">Total Portfolio Value</p>
-            <p id="total-value" class="text-white tracking-light text-2xl font-bold leading-normal">RM 0.00</p>
-          </div>
-          <div class="flex min-w-[158px] flex-1 flex-col gap-2 rounded-xl p-6 bg-[#2d372a]">
-            <p class="text-white text-base font-medium leading-normal">Dividend Income</p>
-            <p id="dividend-total" class="text-green-400 tracking-light text-2xl font-bold leading-normal">RM 0.00</p>
-          </div>
+        <div class="flex-1 p-6 bg-gray-900 rounded-xl">
+          <p class="text-white">Dividend Income</p>
+          <p id="dividend-total" class="text-2xl font-bold text-green-400">RM 0.00</p>
         </div>
+      </div>
 
-        <!-- Daily Update Checklist -->
-        <div style="max-width: 900px; margin: 20px auto 10px; padding: 15px; background: rgba(20, 40, 15, 0.5); border-radius: 12px; font-size: 0.95em; color: #b8e4a5; box-shadow: 0 2px 8px rgba(0,0,0,0.2); text-align: center;">
-          <strong>✅ Daily Update Checklist:</strong>
-          <ol style="margin: 10px 0 0 20px; text-align: left;">
-            <li>Check closing prices on <a href="https://www.sgx.com" target="_blank" style="color:#a3d98b">SGX</a> or <a href="https://www.google.com/finance" target="_blank" style="color:#a3d98b">Google Finance</a></li>
-            <li>Update <strong>Current Price</strong> in this HTML</li>
-            <li>Save, commit, and push to GitHub</li>
-          </ol>
-        </div>
+      <!-- Daily Checklist -->
+      <div style="
+        max-width: 900px;
+        margin: 20px auto;
+        padding: 15px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 12px;
+        font-size: 0.95em;
+        color: #b8e4a5;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        text-align: center;
+      ">
+        <strong>✅ Daily Update Checklist:</strong>
+        <ol style="margin: 10px 0 0 20px; text-align: left;">
+          <li>Check prices on <a href="https://www.sgx.com" target="_blank" style="color:#a3d98b">SGX</a> or <a href="https://www.google.com/finance" target="_blank" style="color:#a3d98b">Google Finance</a></li>
+          <li>Update <strong>Current Price</strong></li>
+          <li>Save, commit, push to GitHub</li>
+        </ol>
+      </div>
 
-        <!-- Portfolio Table -->
-        <div style="max-width: 900px; margin: 0 auto;">
-          <h2 class="text-white text-[22px] font-bold leading-tight tracking-[-0.015em] mt-5 mb-3">Your Holdings</h2>
-          <div class="flex overflow-hidden rounded-xl border border-[#42513e] bg-[#131712]">
-            <table class="flex-1">
-              <thead>
-                <tr class="bg-[#1f251d]">
-                  <th class="px-4 py-3 text-left text-white text-sm font-medium w-[120px]">Acquisition Date</th>
-                  <th class="px-4 py-3 text-left text-white text-sm font-medium w-[140px]">Stock</th>
-                  <th class="px-4 py-3 text-left text-white text-sm font-medium w-[100px]">Symbol</th>
-                  <th class="px-4 py-3 text-left text-white text-sm font-medium w-[100px]">Quantity</th>
-                  <th class="px-4 py-3 text-left text-white text-sm font-medium w-[110px]">Initial Cost</th>
-                  <th class="px-4 py-3 text-left text-white text-sm font-medium w-[120px]">Current Price</th>
-                  <th class="px-4 py-3 text-left text-white text-sm font-medium w-[110px]">Gain/Loss (%)</th>
-                  <th class="px-4 py-3 text-left text-white text-sm font-medium w-[110px]">Gain/Loss (RM)</th>
-                  <th class="px-4 py-3 text-left text-white text-sm font-medium w-[110px]">Dividend (RM)</th>
-                  <th class="px-4 py-3 text-left text-white text-sm font-medium w-[140px]">Remarks</th>
-                </tr>
-              </thead>
-              <tbody id="portfolio-tbody">
-                <!-- BIOHLD -->
-                <tr id="stock-biohld" class="border-t border-t-[#42513e]">
-                  <td class="h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">2021-01-26</td>
-                  <td class="h-[72px] px-4 py-2 text-white text-sm">BIOHLD</td>
-                  <td class="h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">BIOHLD</td>
-                  <td class="quantity h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">29800</td>
-                  <td class="initial-cost h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">$0.283</td>
-                  <td class="current-price h-[72px] px-4 py-2 text-[#a3d98b] text-sm font-bold" style="cursor:help" title="Click to edit manually">0.010</td>
-                  <td class="gain-pct h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">0%</td>
-                  <td class="gain-amount h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">$0.00</td>
-                  <td class="dividend-amount h-[72px] px-4 py-2 text-[#a3d98b] text-sm">150.00</td>
-                  <td class="remarks h-[72px] px-4 py-2 text-yellow-300 text-sm font-semibold">Holding long term</td>
-                </tr>
+      <!-- Portfolio Table -->
+      <div style="max-width: 900px; margin: 0 auto;">
+        <h2 class="text-white text-xl font-bold mt-5 mb-3">Your Holdings</h2>
+        <table class="w-full border border-gray-600 rounded-xl overflow-hidden">
+          <thead class="bg-gray-800">
+            <tr>
+              <th class="px-4 py-3 text-left text-sm font-medium text-white">Date</th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-white">Stock</th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-white">Qty</th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-white">Cost</th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-white">Current</th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-white">Gain (%)</th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-white">Gain (RM)</th>
+              <th class="px-4 py-3 text-left text-sm font-medium text-white">Dividend</th>
+            </tr>
+          </thead>
+          <tbody id="portfolio-tbody">
+            <!-- BIOHLD -->
+            <tr class="border-t border-gray-600">
+              <td class="px-4 py-2 text-sm text-gray-400">2021-01-26</td>
+              <td class="px-4 py-2 text-white text-sm">BIOHLD</td>
+              <td class="quantity px-4 py-2 text-sm">29800</td>
+              <td class="initial-cost px-4 py-2 text-sm">$0.283</td>
+              <td class="current-price px-4 py-2 font-bold text-green-400">0.010</td>
+              <td class="gain-pct px-4 py-2 text-sm">0%</td>
+              <td class="gain-amount px-4 py-2 text-sm">$0.00</td>
+              <td class="dividend-amount px-4 py-2 text-sm">150.00</td>
+            </tr>
+            <!-- JFTECH -->
+            <tr class="border-t border-gray-600">
+              <td class="px-4 py-2 text-sm text-gray-400">2021-02-26</td>
+              <td class="px-4 py-2 text-white text-sm">JFTECH</td>
+              <td class="quantity px-4 py-2 text-sm">13000</td>
+              <td class="initial-cost px-4 py-2 text-sm">$1.413</td>
+              <td class="current-price px-4 py-2 font-bold text-green-400">0.425</td>
+              <td class="gain-pct px-4 py-2 text-sm">0%</td>
+              <td class="gain-amount px-4 py-2 text-sm">$0.00</td>
+              <td class="dividend-amount px-4 py-2 text-sm">80.00</td>
+            </tr>
+            <!-- Top Glove -->
+            <tr class="border-t border-gray-600">
+              <td class="px-4 py-2 text-sm text-gray-400">2021-01-21</td>
+              <td class="px-4 py-2 text-white text-sm">Top Glove</td>
+              <td class="quantity px-4 py-2 text-sm">7100</td>
+              <td class="initial-cost px-4 py-2 text-sm">$5.235</td>
+              <td class="current-price px-4 py-2 font-bold text-green-400">0.595</td>
+              <td class="gain-pct px-4 py-2 text-sm">0%</td>
+              <td class="gain-amount px-4 py-2 text-sm">$0.00</td>
+              <td class="dividend-amount px-4 py-2 text-sm">200.00</td>
+            </tr>
+            <!-- Greatech -->
+            <tr class="border-t border-gray-600">
+              <td class="px-4 py-2 text-sm text-gray-400">2021-03-15</td>
+              <td class="px-4 py-2 text-white text-sm">Greatech</td>
+              <td class="quantity px-4 py-2 text-sm">4000</td>
+              <td class="initial-cost px-4 py-2 text-sm">$2.500</td>
+              <td class="current-price px-4 py-2 font-bold text-green-400">1.600</td>
+              <td class="gain-pct px-4 py-2 text-sm">0%</td>
+              <td class="gain-amount px-4 py-2 text-sm">$0.00</td>
+              <td class="dividend-amount px-4 py-2 text-sm">120.00</td>
+            </tr>
+            <!-- Tenaga -->
+            <tr class="border-t border-gray-600">
+              <td class="px-4 py-2 text-sm text-gray-400">2021-01-21</td>
+              <td class="px-4 py-2 text-white text-sm">Tenaga</td>
+              <td class="quantity px-4 py-2 text-sm">1000</td>
+              <td class="initial-cost px-4 py-2 text-sm">$9.80</td>
+              <td class="current-price px-4 py-2 font-bold text-green-400">13.800</td>
+              <td class="gain-pct px-4 py-2 text-sm">0%</td>
+              <td class="gain-amount px-4 py-2 text-sm">$0.00</td>
+              <td class="dividend-amount px-4 py-2 text-sm">300.00</td>
+            </tr>
+          </tbody>
+        </table>
 
-                <!-- JFTECH -->
-                <tr id="stock-jftech" class="border-t border-t-[#42513e]">
-                  <td class="h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">2021-02-26</td>
-                  <td class="h-[72px] px-4 py-2 text-white text-sm">JFTECH</td>
-                  <td class="h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">JFTECH</td>
-                  <td class="quantity h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">13000</td>
-                  <td class="initial-cost h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">$1.413</td>
-                  <td class="current-price h-[72px] px-4 py-2 text-[#a3d98b] text-sm font-bold" style="cursor:help" title="Click to edit manually">0.425</td>
-                  <td class="gain-pct h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">0%</td>
-                  <td class="gain-amount h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">$0.00</td>
-                  <td class="dividend-amount h-[72px] px-4 py-2 text-[#a3d98b] text-sm">80.00</td>
-                  <td class="remarks h-[72px] px-4 py-2 text-yellow-300 text-sm font-semibold">Holding for long term</td>
-                </tr>
+        <!-- Total Gain -->
+        <p id="total-gain" style="text-align: right; font-size: 0.9em; margin: 10px 20px; color: #b8e4a5;">Calculating...</p>
 
-                <!-- Top Glove -->
-                <tr id="stock-topglove" class="border-t border-t-[#42513e]">
-                  <td class="h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">2021-01-21</td>
-                  <td class="h-[72px] px-4 py-2 text-white text-sm">Top Glove</td>
-                  <td class="h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">Top Glove</td>
-                  <td class="quantity h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">7100</td>
-                  <td class="initial-cost h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">$5.235</td>
-                  <td class="current-price h-[72px] px-4 py-2 text-[#a3d98b] text-sm font-bold" style="cursor:help" title="Click to edit manually">0.595</td>
-                  <td class="gain-pct h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">0%</td>
-                  <td class="gain-amount h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">$0.00</td>
-                  <td class="dividend-amount h-[72px] px-4 py-2 text-[#a3d98b] text-sm">200.00</td>
-                  <td class="remarks h-[72px] px-4 py-2 text-yellow-300 text-sm font-semibold">Holding for long term</td>
-                </tr>
-
-                <!-- Greatech -->
-                <tr id="stock-greatech" class="border-t border-t-[#42513e]">
-                  <td class="h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">2021-03-15</td>
-                  <td class="h-[72px] px-4 py-2 text-white text-sm">Greatech</td>
-                  <td class="h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">Greatech</td>
-                  <td class="quantity h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">4000</td>
-                  <td class="initial-cost h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">$2.500</td>
-                  <td class="current-price h-[72px] px-4 py-2 text-[#a3d98b] text-sm font-bold" style="cursor:help" title="Click to edit manually">1.600</td>
-                  <td class="gain-pct h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">0%</td>
-                  <td class="gain-amount h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">$0.00</td>
-                  <td class="dividend-amount h-[72px] px-4 py-2 text-[#a3d98b] text-sm">120.00</td>
-                  <td class="remarks h-[72px] px-4 py-2 text-yellow-300 text-sm font-semibold">Holding for long term</td>
-                </tr>
-
-                <!-- Tenaga -->
-                <tr id="stock-tenaga" class="border-t border-t-[#42513e]">
-                  <td class="h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">2021-01-21</td>
-                  <td class="h-[72px] px-4 py-2 text-white text-sm">Tenaga</td>
-                  <td class="h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">Tenaga</td>
-                  <td class="quantity h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">1000</td>
-                  <td class="initial-cost h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">$9.80</td>
-                  <td class="current-price h-[72px] px-4 py-2 text-[#a3d98b] text-sm font-bold" style="cursor:help" title="Click to edit manually">13.800</td>
-                  <td class="gain-pct h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">0%</td>
-                  <td class="gain-amount h-[72px] px-4 py-2 text-[#a5b6a0] text-sm">$0.00</td>
-                  <td class="dividend-amount h-[72px] px-4 py-2 text-[#a3d98b] text-sm">300.00</td>
-                  <td class="remarks h-[72px] px-4 py-2 text-yellow-300 text-sm font-semibold">Holding for long term</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Total Gain -->
-          <p id="total-gain" style="text-align: right; font-size: 0.9em; margin: 0 20px; color: #b8e4a5;">Calculating...</p>
-
-          <!-- Last Updated -->
-          <p style="text-align: right; color: #8aad80; font-size: 0.9em; margin: 10px 20px 0 0; font-style: italic;">
-            ✅ Last updated: Apr 6, 2025 | Manual update by Magane
-          </p>
-        </div>
+        <!-- Last Updated -->
+        <p style="text-align: right; color: #8aad80; font-size: 0.9em; margin: 10px 20px 0 0; font-style: italic;">
+          ✅ Last updated: Apr 6, 2025 | Manual update by Magane
+        </p>
       </div>
     </div>
   </div>
 
-  <!-- ================ -->
-  <!-- AUTO-CALCULATION SCRIPT -->
-  <!-- ================ -->
+  <!-- Auto-Calculation Script -->
   <script>
     // Format number with commas and 2 decimals
     function formatCurrency(value) {
@@ -218,7 +199,7 @@
       let totalInvested = 0;
 
       // Update each stock
-      document.querySelectorAll('tr[id^="stock-"]').forEach(row => {
+      document.querySelectorAll('#portfolio-tbody tr').forEach(row => {
         const quantity = parseFloat(row.querySelector('.quantity').textContent);
         const initialCost = parseFloat(row.querySelector('.initial-cost').textContent.replace('$', ''));
         const currentPrice = parseFloat(row.querySelector('.current-price').textContent);
@@ -242,12 +223,12 @@
           : `${percentage.toFixed(2)}%`;
 
         gainAmountCell.className = profit >= 0 
-          ? 'text-green-500 text-sm font-normal leading-normal' 
-          : 'text-red-500 text-sm font-normal leading-normal';
+          ? 'text-green-500' 
+          : 'text-red-500';
           
         gainPctCell.className = percentage >= 0 
-          ? 'text-green-500 text-sm font-normal leading-normal' 
-          : 'text-red-500 text-sm font-normal leading-normal';
+          ? 'text-green-500' 
+          : 'text-red-500';
       });
 
       // Update total portfolio value
